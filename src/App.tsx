@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useContext, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { MainPage } from './components/MainPage/MainPage'
+import { Cart } from './components/Cart/Cart'
+
+import './App.css'
+
+interface Cart {
+  banana: number
+  bananaAmountToAdd: number
+  apple: number
+  appleAmountToAdd: number
+  papaya: number
+  papayaAmountToAdd: number
 }
 
-export default App;
+interface Value {
+  cart: Cart
+  setCart: React.Dispatch<
+    React.SetStateAction<{
+      banana: number
+      bananaAmountToAdd: number
+      apple: number
+      appleAmountToAdd: number
+      papaya: number
+      papayaAmountToAdd: number
+    }>
+  >
+}
+
+const CartContext = createContext<Value | null>(null)
+
+export const useCart = () => {
+  const value = useContext(CartContext)
+
+  if (!value) {
+    throw new Error('useCart outside context')
+  }
+
+  return value
+}
+
+function App() {
+  const [cart, setCart] = useState<Cart>({
+    banana: 0,
+    bananaAmountToAdd: 1,
+    apple: 0,
+    appleAmountToAdd: 1,
+    papaya: 0,
+    papayaAmountToAdd: 1,
+  })
+
+  return (
+    <CartContext.Provider value={{ cart, setCart }}>
+      <BrowserRouter>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </CartContext.Provider>
+  )
+}
+
+export default App

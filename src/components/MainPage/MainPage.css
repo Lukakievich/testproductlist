@@ -1,0 +1,24 @@
+.product {
+  font-size: 40px;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5%;
+  border: 1px solid black;
+  margin: 10px auto;
+  padding-left: 5%;
+  background-color: darkgrey;
+}
+.product input {
+  max-width: 70px;
+  background-color: lightblue;
+  text-align: center;
+}
+.addButton {
+  background-color: antiquewhite;
+}
+.productsList {
+  font-size: 20px;
+  margin: 20px auto;
+}
