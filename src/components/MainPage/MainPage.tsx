@@ -30,7 +30,7 @@ export const MainPage = () => {
           </div>
         )
       })}
-      <Link to="/cart">Перейти в корзину</Link>
+      <Link to="/testproductlist/cart">Перейти в корзину</Link>
     </>
   )
 }

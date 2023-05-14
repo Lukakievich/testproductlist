@@ -55,7 +55,7 @@ export const Cart = () => {
         }
       })}
       <div className="fullPrice">Общая сумма товаров: {fullPrice}</div>
-      <Link to="/">К списку товаров</Link>
+      <Link to="/testproductlist">К списку товаров</Link>
     </>
   )
 }

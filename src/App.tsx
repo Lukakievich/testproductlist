@@ -60,8 +60,8 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/testproductlist" element={<MainPage />} />
+            <Route path="/testproductlist/cart" element={<Cart />} />
           </Routes>
         </div>
       </BrowserRouter>
