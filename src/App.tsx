@@ -6,27 +6,20 @@ import { Cart } from './components/Cart/Cart'
 
 import './App.css'
 
-interface Cart {
-  banana: number
-  bananaAmountToAdd: number
-  apple: number
-  appleAmountToAdd: number
-  papaya: number
-  papayaAmountToAdd: number
+interface Product {
+  name: string
+  price: number
+  quantity: number
+  onSale: boolean
+  salePrice?: number
+  saleFormula?: Function
 }
+
+type Cart = Product[]
 
 interface Value {
   cart: Cart
-  setCart: React.Dispatch<
-    React.SetStateAction<{
-      banana: number
-      bananaAmountToAdd: number
-      apple: number
-      appleAmountToAdd: number
-      papaya: number
-      papayaAmountToAdd: number
-    }>
-  >
+  setCart: React.Dispatch<React.SetStateAction<Cart>>
 }
 
 const CartContext = createContext<Value | null>(null)
@@ -42,14 +35,25 @@ export const useCart = () => {
 }
 
 function App() {
-  const [cart, setCart] = useState<Cart>({
-    banana: 0,
-    bananaAmountToAdd: 1,
-    apple: 0,
-    appleAmountToAdd: 1,
-    papaya: 0,
-    papayaAmountToAdd: 1,
-  })
+  const [cart, setCart] = useState<Cart>([
+    { name: 'Банан', price: 10, quantity: 0, onSale: false },
+    { name: 'Яблоко', price: 8, quantity: 0, onSale: false },
+    {
+      name: 'Папая',
+      price: 10,
+      quantity: 0,
+      onSale: true,
+      salePrice: 25,
+      saleFormula: function () {
+        if (typeof this.salePrice === 'number') {
+          const finalPrice =
+            (this.quantity % 3) * this.price +
+            ((this.quantity - (this.quantity % 3)) / 3) * this.salePrice
+          return finalPrice
+        }
+      },
+    },
+  ])
 
   return (
     <CartContext.Provider value={{ cart, setCart }}>

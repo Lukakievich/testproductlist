@@ -13,3 +13,12 @@
 .productPrice button {
   background-color: indianred;
 }
+.fullPrice {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 10px auto;
+  background-color: darkgrey;
+}
