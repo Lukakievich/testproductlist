@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom'
-
 import { useProductList, Product, ProductInCart } from '../../App'
+
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import InputAdornment from '@mui/material/InputAdornment'
+import ListItemText from '@mui/material/ListItemText'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+
 import './MainPage.css'
+import { Box } from '@mui/material'
 
 export function getTotalPrice(
   product: Product | ProductInCart,
@@ -65,34 +74,70 @@ export const MainPage = () => {
   }
 
   return (
-    <>
-      {list.map((product, index) => {
-        return (
-          <div className="product" key={index}>
-            <div className="name">{product.name}</div>
-            <div className="price">{product.price}$</div>
-            <input
-              type="text"
-              value={product.inputState}
-              onChange={(e) => onChangeInputVal(e, index)}
-            ></input>
-            <button
-              className="addButton"
-              onClick={() => onClickAddToCart(product)}
-            >
-              Добавить в корзину
-            </button>
-            <div className="name">
-              В корзине:{' '}
-              {cart.find((cartProduct) => cartProduct.name === product.name)
-                ? cart.find((cartProduct) => cartProduct.name === product.name)
-                    ?.quantity
-                : '0'}
-            </div>
-          </div>
-        )
-      })}
-      <Link to="/testproductlist/cart">Перейти в корзину</Link>
-    </>
+    <div className="wrapper">
+      <div className="head">
+        <div className="head-text">Список продукстов</div>
+        <Button
+          variant="contained"
+          children={<Link to="/testproductlist/cart">Перейти в корзину</Link>}
+        />
+      </div>
+      <div className="cards">
+        {list.map((product, index) => {
+          return (
+            <Box display={'flex'} key={index}>
+              <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+                  <ListItemText primary={product.name} />
+                  <ListItemText primary={`Цена за кг: ${product.price}$`} />
+                  <Box display={'flex'} gap={2} mt={3}>
+                    <Box maxWidth={95}>
+                      <TextField
+                        id="outlined-controlled"
+                        size="small"
+                        autoComplete="off"
+                        label="Количество"
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">кг</InputAdornment>
+                          ),
+                        }}
+                        value={product.inputState}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          onChangeInputVal(e, index)
+                        }}
+                      />
+                    </Box>
+                    <ListItemText
+                      primary={`В корзине:
+                      ${
+                        cart.find(
+                          (cartProduct) => cartProduct.name === product.name
+                        )
+                          ? cart.find(
+                              (cartProduct) => cartProduct.name === product.name
+                            )?.quantity
+                          : '0'
+                      } кг`}
+                    />
+                  </Box>
+                </CardContent>
+                <CardActions>
+                  <Box mr={1} ml={1}>
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      onClick={() => onClickAddToCart(product)}
+                    >
+                      Добавить в корзину
+                    </Button>
+                  </Box>
+                </CardActions>
+              </Card>
+            </Box>
+          )
+        })}
+      </div>
+    </div>
   )
 }

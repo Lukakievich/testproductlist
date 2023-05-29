@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useProductList } from '../../App'
 import { getTotalPrice } from '../MainPage/MainPage'
 
+import Button from '@mui/material/Button'
 import './Cart.css'
 
 export const Cart = () => {
@@ -51,25 +52,28 @@ export const Cart = () => {
             <div className="productPrice" key={index}>
               <div>
                 {product.name} кол-во:{' '}
-                <button onClick={() => onClickProductCountDecrement(index)}>
+                <Button variant='outlined' onClick={() => onClickProductCountDecrement(index)}>
                   -
-                </button>{' '}
+                </Button>{' '}
                 {product.quantity}{' '}
-                <button onClick={() => onClickProductCountIncrement(index)}>
+                <Button variant='outlined' onClick={() => onClickProductCountIncrement(index)}>
                   +
-                </button>{' '}
+                </Button>{' '}
                 цена: {product.totalPrice}$
               </div>
 
-              <button onClick={() => onClickDeleteProduct(index)}>
+              <Button variant='outlined' onClick={() => onClickDeleteProduct(index)}>
                 Удалить всё
-              </button>
+              </Button>
             </div>
           )
         }
       })}
       <div className="fullPrice">Общая сумма товаров: {fullPrice}$</div>
-      <Link to="/testproductlist">К списку товаров</Link>
+      <Button
+          variant="contained"
+          children={<Link to="/testproductlist">К списку товаров</Link>}
+        />
     </>
   )
 }

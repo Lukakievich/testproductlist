@@ -1,3 +1,11 @@
+.wrapper{
+width: 80%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
 .product {
   font-size: 40px;
   width: 85%;
@@ -10,15 +18,44 @@
   padding-left: 5%;
   background-color: darkgrey;
 }
-.product input {
-  max-width: 70px;
-  background-color: lightblue;
-  text-align: center;
-}
+
 .addButton {
   background-color: antiquewhite;
 }
 .productsList {
   font-size: 20px;
   margin: 20px auto;
+}
+
+.head {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+.head-text {
+  display: flex;
+  font-size: 30px;
+  /* flex: 1 1 auto; */
+  
+}
+.cards {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1060px) {
+  .cards {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 712px) {
+  .head {
+    flex-direction: column;
+  }
 }
