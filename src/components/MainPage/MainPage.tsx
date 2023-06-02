@@ -75,13 +75,7 @@ export const MainPage = () => {
 
   return (
     <div className="wrapper">
-      <div className="head">
-        <div className="head-text">Список продукстов</div>
-        <Button
-          variant="contained"
-          children={<Link to="/testproductlist/cart">Перейти в корзину</Link>}
-        />
-      </div>
+      <div className="head-text">Список продуктов</div>
       <div className="cards">
         {list.map((product, index) => {
           return (
@@ -138,6 +132,9 @@ export const MainPage = () => {
           )
         })}
       </div>
+      <Button variant="contained">
+        <Link to="/testproductlist/cart">Перейти в корзину</Link>
+      </Button>
     </div>
   )
 }
