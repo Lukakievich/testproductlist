@@ -88,6 +88,7 @@ export const MainPage = () => {
                     <Box maxWidth={95}>
                       <TextField
                         id="outlined-controlled"
+                        type='number'
                         size="small"
                         autoComplete="off"
                         label="Количество"
@@ -133,7 +134,7 @@ export const MainPage = () => {
         })}
       </div>
       <Button variant="contained">
-        <Link to="/testproductlist/cart">Перейти в корзину</Link>
+        <Link to="/cart">Перейти в корзину</Link>
       </Button>
     </div>
   )

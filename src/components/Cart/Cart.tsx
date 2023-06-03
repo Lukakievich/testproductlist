@@ -50,21 +50,32 @@ export const Cart = () => {
         if (product.quantity) {
           return (
             <div className="productPrice" key={index}>
-              {product.name} кол-во:{' '}
+              <div className='cartNameText'>
+              {product.name}
+              </div>
+               кол-во:{' '}
               <Button
                 variant="outlined"
                 onClick={() => onClickProductCountDecrement(index)}
               >
                 -
               </Button>{' '}
+              <div className='cartQuantityText'>
+
               {product.quantity}{' '}
+              </div>
+
               <Button
                 variant="outlined"
                 onClick={() => onClickProductCountIncrement(index)}
               >
                 +
               </Button>{' '}
-              цена: {product.totalPrice}$
+              цена: 
+              <div className='cartPriceText'>
+
+              {product.totalPrice}$
+              </div>
               <Button
                 variant="outlined"
                 onClick={() => onClickDeleteProduct(index)}
@@ -78,7 +89,7 @@ export const Cart = () => {
       <div className="fullPrice">Общая сумма товаров: {fullPrice}$</div>
       <Button
         variant="contained"
-        children={<Link to="/testproductlist">К списку товаров</Link>}
+        children={<Link to="/">К списку товаров</Link>}
       />
     </>
   )

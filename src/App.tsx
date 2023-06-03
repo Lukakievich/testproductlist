@@ -82,11 +82,11 @@ const App = () => {
 
   return (
     <ListContext.Provider value={{ list, setList, cart, setCart }}>
-      <BrowserRouter>
+      <BrowserRouter basename="/testproductlist">
         <div className="App">
           <Routes>
-            <Route path="/testproductlist" element={<MainPage />} />
-            <Route path="/testproductlist/cart" element={<Cart />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
       </BrowserRouter>

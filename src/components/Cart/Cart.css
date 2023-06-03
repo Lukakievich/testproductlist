@@ -24,3 +24,15 @@
   justify-content: center;
   margin: 20px auto;
 }
+.cartNameText {
+  width: 140px;
+}
+.cartPriceText {
+  width: 100px;
+}
+.cartQuantityText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+}
