@@ -4,7 +4,7 @@ import { useProductList, Product, ProductInCart } from '../../App'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
-import ListItemText from '@mui/material/ListItemText'
+import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -38,6 +38,10 @@ export const MainPage = () => {
       setCart((prevState) => {
         const newState = [...prevState]
         newState[productIndex].quantity += product.inputState
+        // ограничение в корзине 1000кг
+        if (newState[productIndex].quantity > 1000) {
+          newState[productIndex].quantity = 1000
+        }
         newState[productIndex].totalPrice = getTotalPrice(
           product,
           newState[productIndex].quantity
@@ -82,13 +86,34 @@ export const MainPage = () => {
             <Box display={'flex'} key={index}>
               <Card sx={{ minWidth: 275 }}>
                 <CardContent>
-                  <ListItemText primary={product.name} />
-                  <ListItemText primary={`Цена за кг: ${product.price}$`} />
+                  <Box display={'flex'} gap={1}>
+                    <Typography variant="h5">{product.name}</Typography>
+                    {product.onSale ? (
+                      <Typography variant="h5" color="red">
+                        (скидка)
+                      </Typography>
+                    ) : (
+                      ''
+                    )}
+                  </Box>
+                  <Box>
+                    <Typography
+                      variant="h6"
+                      fontSize={16}
+                    >{`Цена за кг: ${product.price}$`}</Typography>
+                    {product.onSale ? (
+                      <Typography variant="h6" fontSize={16} color="red">
+                        {`За каждые ${product.saleProps?.quantityForSale}кг цена: ${product.saleProps?.salePrice}$`}
+                      </Typography>
+                    ) : (
+                      <Box height={26}></Box>
+                    )}
+                  </Box>
                   <Box display={'flex'} gap={2} mt={3}>
                     <Box maxWidth={95}>
                       <TextField
                         id="outlined-controlled"
-                        type='number'
+                        type="number"
                         size="small"
                         autoComplete="off"
                         label="Количество"
@@ -103,18 +128,16 @@ export const MainPage = () => {
                         }}
                       />
                     </Box>
-                    <ListItemText
-                      primary={`В корзине:
-                      ${
-                        cart.find(
-                          (cartProduct) => cartProduct.name === product.name
-                        )
-                          ? cart.find(
-                              (cartProduct) => cartProduct.name === product.name
-                            )?.quantity
-                          : '0'
-                      } кг`}
-                    />
+                    <Typography>{`В корзине:
+                    ${
+                      cart.find(
+                        (cartProduct) => cartProduct.name === product.name
+                      )
+                        ? cart.find(
+                            (cartProduct) => cartProduct.name === product.name
+                          )?.quantity
+                        : '0'
+                    } кг`}</Typography>
                   </Box>
                 </CardContent>
                 <CardActions>

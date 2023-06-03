@@ -31,6 +31,9 @@ export const Cart = () => {
     setCart((prevState) => {
       const newState = [...prevState]
       newState[index].quantity += 1
+      if (newState[index].quantity > 1000) {
+        newState[index].quantity = 1000
+      }
       newState[index].totalPrice = getTotalPrice(
         newState[index],
         newState[index].quantity
