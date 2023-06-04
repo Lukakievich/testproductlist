@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useProductList } from '../../App'
 import { getTotalPrice } from '../MainPage/MainPage'
 
+import { Box } from '@mui/material'
 import Button from '@mui/material/Button'
 import './Cart.css'
 
@@ -53,32 +54,27 @@ export const Cart = () => {
         if (product.quantity) {
           return (
             <div className="productPrice" key={index}>
-              <div className='cartNameText'>
-              {product.name}
-              </div>
-               кол-во:{' '}
-              <Button
-                variant="outlined"
-                onClick={() => onClickProductCountDecrement(index)}
-              >
-                -
-              </Button>{' '}
-              <div className='cartQuantityText'>
-
-              {product.quantity}{' '}
-              </div>
-
-              <Button
-                variant="outlined"
-                onClick={() => onClickProductCountIncrement(index)}
-              >
-                +
-              </Button>{' '}
-              цена: 
-              <div className='cartPriceText'>
-
-              {product.totalPrice}$
-              </div>
+              <div className="cartNameText">{product.name}</div>
+              <Box display="flex" gap={1} fontSize={30}>
+                кол-во:{' '}
+                <Button
+                  variant="outlined"
+                  onClick={() => onClickProductCountDecrement(index)}
+                >
+                  -
+                </Button>{' '}
+                <div className="cartQuantityText">{product.quantity} </div>
+                <Button
+                  variant="outlined"
+                  onClick={() => onClickProductCountIncrement(index)}
+                >
+                  +
+                </Button>{' '}
+              </Box>
+              <Box display="flex" gap={1} fontSize={30}>
+                цена:
+                <div className="cartPriceText">{product.totalPrice}$</div>
+              </Box>
               <Button
                 variant="outlined"
                 onClick={() => onClickDeleteProduct(index)}

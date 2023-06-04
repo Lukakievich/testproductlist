@@ -6,10 +6,12 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: start;
-  gap: 2%;
+  gap: 10px;
   margin: 5px auto;
   padding-left: 5%;
-  /**/
+  padding-right: 5%;
+  padding: 10px 5%;
+  /*MUI card style*/
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border-radius: 4px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
@@ -25,14 +27,31 @@
   margin: 20px auto;
 }
 .cartNameText {
+  font-size: 35px;
   width: 140px;
 }
 .cartPriceText {
   width: 100px;
 }
 .cartQuantityText {
+  font-size: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
+  width: 60px;
+}
+
+@media (max-width: 1190px) {
+  .productPrice {
+    flex-direction: column;
+    margin: 15px auto;
+  }
+  .cartNameText {
+    width: auto;
+  }
+}
+@media (max-width: 767.98px) {
+  .fullPrice {
+    font-size: 25px;
+  }
 }

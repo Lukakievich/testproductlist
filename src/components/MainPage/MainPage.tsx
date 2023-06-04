@@ -8,9 +8,8 @@ import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-
-import './MainPage.css'
 import { Box } from '@mui/material'
+import './MainPage.css'
 
 export function getTotalPrice(
   product: Product | ProductInCart,
