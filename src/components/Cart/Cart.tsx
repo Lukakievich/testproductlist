@@ -86,10 +86,11 @@ export const Cart = () => {
         }
       })}
       <div className="fullPrice">Общая сумма товаров: {fullPrice}$</div>
-      <Button
-        variant="contained"
-        children={<Link to="/">К списку товаров</Link>}
-      />
+      <Box marginBottom={3}>
+        <Button variant="contained">
+          <Link to="/">К списку товаров</Link>
+        </Button>
+      </Box>
     </>
   )
 }
